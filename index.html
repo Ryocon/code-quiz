@@ -5,8 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz!</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <header>
+        <a href="#">View Highscores</a>
+        <p>Time: <span id="timer"></span></p>
+    </header>
+
+    <section class="container">
+        <div id="splash">
+        <h1>Javascript Brain Buster 🧠</h1>
+
+        <div id="starter">
+            <p>
+                Are you ready to test your Javascript knowledge?
+            </p>
+            <button id="start-button">Start</button>
+        </div>
+        </div>
+    </section>
+        
+    <section id="quiz" class="hide">
+            <div id="question"></div>
+            <button class="answer" id="a">test</button>
+            <button class="answer" id="b">test</button>
+            <button class="answer" id="c">test</button>
+            <button class="answer" id="d">test</button>
+            
+    </section>
+
+    <section id="end-page" class="hide">
+        <h2>
+            Game Over!
+        </h2>
+
+    </section>
+
     
+<script src="js/script.js"></script>
 </body>
+
 </html>

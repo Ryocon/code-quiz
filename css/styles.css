@@ -1,0 +1,57 @@
+:root {
+    --main-bg-color: #41147D;
+    --major-text: #B337A6;
+    --minor-text: #26B391;
+    --box-bg: #DE1D66;
+    --button-bg: #DE8428;
+}
+
+header {
+    color: var(--minor-text);
+}
+
+header a {
+    color: var(--minor-text);
+}
+
+body {
+    display: flex;
+    background-color: var(--main-bg-color);
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 500px;
+    
+}
+
+.container button {
+    margin-left: 125px;
+    margin-top: 25px;
+}
+
+h1 {
+    color: var(--major-text)
+}
+
+p {
+    color: var(--minor-text)
+}
+
+#quiz {
+    background-color: var(--box-bg);
+}
+
+button {
+    background-color: var(--button-bg);
+}
+
+.hide {
+    display: none;
+}
