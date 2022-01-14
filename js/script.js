@@ -1,7 +1,7 @@
 var startButton = document.getElementById('start-button')
 var quizContainer = document.getElementById('quiz')
 var questionEl = document.getElementById('question')
-var AnswerEl = document.getElementById('answer')
+var AnswerEl = document.getElementsByClassName('answers')
 var mainSplash = document.getElementById('splash')
 var container = document.getElementsByClassName('container')
 var timerEl = document.getElementById('timer')
@@ -30,19 +30,21 @@ if(timeLeft <= 0) {
     clearInterval(timerEl)
     quizContainer.classList.add('hide')
     endPage.classList.remove('hide')
-    timerEl.innerHTML = 'Time is up!'
+    timerEl.innerHTML = ' is up!'
 }
-}, 1000 )
+}, 1000 ) }
 
 function setQuestion() {
     showQuestion(questionRandom[questionIndex])
 }
 
-function showQuestion(question)
+function showQuestion(question) {
+    questionEl.innerHTML = question.question
+}
 
 function selectAsnswer() {}
 
-
+// WOKRING ON QUESTIONS APPEARING
 
 
 
@@ -57,4 +59,4 @@ var questions = [
             { text: 'Java', correct: false}
         ]
     }
-] }
+]
