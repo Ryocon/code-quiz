@@ -1,7 +1,7 @@
 var startButton = document.getElementById('start-button')
 var quizContainer = document.getElementById('quiz')
 var questionEl = document.getElementById('question')
-var answerEl = document.getElementsByClassName('answers')
+var answerEl = document.getElementById('answers')
 var mainSplash = document.getElementById('splash')
 var container = document.getElementsByClassName('container')
 var timerEl = document.getElementById('timer')
@@ -24,6 +24,7 @@ function startQuiz() {
 setQuestion()
 }
 
+// countdown function using setinterval
 function countDown() {
     var timeLeft = 11
     quizTimer = setInterval(function(){
@@ -61,7 +62,9 @@ function selectAnswer(e) {}
 
 // WOKRING ON QUESTIONS APPEARING
 
-
+function resetPage() {
+    
+}
 
 
 const questions = [
