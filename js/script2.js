@@ -2,9 +2,9 @@
 // variable containing an array of objects for the questions
 var quizQuestions = [
     {
-      question: "Question 1",
-      answers: ["A", "B", "C", "D", "E"],
-      correctAnswer: "A",
+      question: "What is 1+1",
+      answers: ["2", "3", "q", "egg", "E"],
+      correctAnswer: "2",
     },
     {
       question: " Q 2",
@@ -25,6 +25,10 @@ var quizQuestions = [
 
 var questionIndex = 0
 
+var questionEl = document.getElementById('question')
+
+var answersEl = document.getElementById('answers')
+
 var mainEl = document.getElementById('main')
 var startButton = document.getElementById('start-button')
 var quizEl = document.getElementById('quiz')
@@ -32,7 +36,7 @@ var timerEl = document.getElementById('timer')
 var endPageEl = document.getElementById('end-page')
 
 // timer initial setting in global scope
-var timeLeft = 5
+var timeLeft = 10
 
 // event listener that calls the start startQuiz function
 startButton.addEventListener('click', startQuiz)
@@ -41,6 +45,7 @@ function startQuiz() {
  console.log('Started')
  mainEl.classList.add('hide')
  quizEl.classList.remove('hide')
+ renderQuestion()
  countDown()
 }
 
@@ -69,3 +74,45 @@ if (timeLeft <= 0) {
 //     clearInterval(timer);
 // }
 }, 1000 ) }
+
+function setQuestion() {}
+
+function renderQuestion() {
+    var questionObject = quizQuestions[questionIndex]
+
+    questionEl.textContent = questionObject.question
+
+    answersEl.innerHTML = ""
+
+    questionObject.answers.forEach(function(answer){
+       var answerButton = document.createElement('button')
+       answerButton.setAttribute('value', answer)
+
+       answerButton.textContent = answer
+
+       answerButton.onclick = answerChoice
+       answersEl.appendChild(answerButton)
+    }
+  ) 
+}
+
+
+function answerChoice() {
+    if (this.value !== quizQuestions[questionIndex].correctAnswer) {
+        console.log('wrong')
+    } else {
+        console.log('correct')
+        questionIndex++
+        // add to user score
+    }
+
+
+    if (questionIndex === quizQuestions.length) {
+        stopQuiz()
+
+        clearInterval(countDown)
+    } else {
+        renderQuestion()
+    }
+}
+
