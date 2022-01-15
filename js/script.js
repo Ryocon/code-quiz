@@ -2,35 +2,34 @@
 // variable containing an array of objects for the questions
 var quizQuestions = [
     {
-      question: "What is 1+1",
-      answers: ["2", "3", "q", "egg", "E"],
-      correctAnswer: "2",
+      question: "What would and alert() create?",
+      answers: ["A Popup", "A Noise", "A Reminder", "Something Else"],
+      correctAnswer: "A Popup",
     },
     {
-      question: " Q 2",
-      answers: ["A", "B", "C", "D", "E"],
-      correctAnswer: "B",
+      question: "Which of the following is the correct element to put JavaScript? ",
+      answers: ["<js>", "<javascript>", "<href>", "<script>"],
+      correctAnswer: "<script>",
     },
     {
-      question: "Question 3",
-      answers: ["A", "B", "C", "D", "E"],
-      correctAnswer: "C",
+      question: "How do you create a function in JavaScript?",
+      answers: ["function myFunction()", "var =", "function:MyFunction", "<Function>"],
+      correctAnswer: "function myFunction()",
     },
     {
-      question: " Q 4",
-      answers: ["A", "B", "C", "D", "E"],
-      correctAnswer: "D",
+      question: "JavaScript variables are written in what kind of style?",
+      answers: ["HumpBack", "camelCase", "mountainWords", "hills"],
+      correctAnswer: "camelCase",
     },
   ];
 
 
-
+// variable to set the question index at 0 so the questions can cycle
 var questionIndex = 0
 
+// setting variables and calling various elements from the html
 var questionEl = document.getElementById('question')
-
 var answersEl = document.getElementById('answers')
-
 var mainEl = document.getElementById('main')
 var startButton = document.getElementById('start-button')
 var quizEl = document.getElementById('quiz')
@@ -39,10 +38,11 @@ var endPageEl = document.getElementById('end-page')
 var backButton = document.getElementById('back-button')
 
 // timer initial setting in global scope
-var timeLeft = 10
+// set at 21 as there seems to be a delay in the display of the timer so it starts the display at 20
+var timeLeft = 21
 var wrongAnswer = 3
 
-// user starting score
+// user starting score which will be added to incrementaly
 var score = document.getElementById('score')
 var userScore = 0
 
@@ -53,6 +53,8 @@ var submitInitialsButton = document.getElementById('submit-initials')
 // event listener that calls the start startQuiz function
 startButton.addEventListener('click', startQuiz)
 
+// the funcation to start the quiz which hides the main page and unhides the quiz page
+// it also starts the timer and renders the questions which are written in seperate functions
 function startQuiz() {
  console.log('Started')
  mainEl.classList.add('hide')
@@ -61,6 +63,7 @@ function startQuiz() {
  countDown()
 }
 
+// the function to stop the quiz once all questions are complete or the timer counts to 0
 function stopQuiz() {
     clearInterval(timerEl)
     quizEl.classList.add('hide')
@@ -70,10 +73,13 @@ function stopQuiz() {
     clearTimeout(countDown, 1000)
 }
 
+// function to display the users score
 function displayScore() {
     score.textContent = userScore 
 }
 
+// the timer function which counts down incrementaly in 1000 milisecond intervals and displays on the page
+// once the timer hits 0 it calls the stopQuiz function and clears the interval which stops the timer
 function countDown() {
     // var timeLeft = 11
     quizTimer = setInterval(function(){
@@ -82,17 +88,12 @@ function countDown() {
 if (timeLeft <= 0) {
     clearInterval(timerEl)
     stopQuiz()
-    // quizContainer.classList.add('hide')
-    // endPage.classList.remove('hide')
-    // timerEl.innerHTML = ' is up!'
+  
 }
-// DOES THIS WORK WHEN END OF QUESTIONS?
-// if (questionIndex >= questions.length) {
-//     clearInterval(timer);
-// }
 }, 1000 ) }
 
-
+// the function to render the questions from the object array and displays them on the page
+// forEach cycles the array and displays a new question once until it reaches the end
 function renderQuestion() {
     var questionObject = quizQuestions[questionIndex]
 
@@ -112,7 +113,9 @@ function renderQuestion() {
   ) 
 }
 
-
+// the function that checks if the user has selected the correct answer
+// if the wrong answer is selected the timer has time reduced and the correct answer adds to the userScore
+// if the questions reach the end of the array the quiz is stopped
 function answerChoice() {
     if (this.value !== quizQuestions[questionIndex].correctAnswer) {
         console.log('wrong')
@@ -148,6 +151,8 @@ function answerChoice() {
 
 // console.log(localStorage.getItem('initials'))
 
+// attempting to create local storage logging and displaying to the page
+// it currently runs without error but does not function correctly despite best efforts at this time
 var finalScore = {
   initials: userInitials.value,
   score: JSON.parse(userScore)
@@ -176,7 +181,7 @@ function renderHighscore() {
 }
 
 
-// refresher
+// event listener and function below that refreshes the page and allows the user to restart the quiz
 backButton.addEventListener('click', goBack)
 
 function goBack () {

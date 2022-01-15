@@ -1,9 +1,14 @@
+/* imported font from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+/* using the root to set variables for colours and a consistent font for the whole application */
 :root {
     --main-bg-color: #41147D;
     --major-text: #B337A6;
     --minor-text: #26B391;
     --box-bg: #DE1D66;
     --button-bg: #DE8428;
+    font-family: 'Source Code Pro', monospace;
 }
 
 header {
@@ -14,6 +19,7 @@ header a {
     color: var(--minor-text);
 }
 
+/* flex used on the main body to make the application responsive */
 body {
     display: flex;
     background-color: var(--main-bg-color);
@@ -21,6 +27,7 @@ body {
     flex-direction: column;
 }
 
+/* z-index used here in combination with position absolute to allow the hidden elements to display in the correct position */
 .container {
     display: flex;
     width: 50%;
@@ -28,11 +35,18 @@ body {
     align-items: center;
     height: 250px;
     width: 500px;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    z-index: 0;
     
 }
 
+.container h1 {
+    margin-left: 30px;
+}
+
 .container button {
-    margin-left: 125px;
+    margin-left: 200px;
     margin-top: 25px;
 }
 
@@ -46,12 +60,44 @@ p {
 
 #quiz {
     background-color: var(--box-bg);
+    margin-top: 200px;
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    padding: 15px;
+}
+
+#question {
+    font-family: 'Source Code Pro', monospace;
+    padding: 15px;
+}
+
+#answers {
+    flex-direction: column;
+    color: var(--major-text);
+    font-family: 'Source Code Pro', monospace;
 }
 
 .button-style {
     background-color: var(--button-bg);
+    font-family: 'Source Code Pro', monospace;
 }
 
+#end-page {
+    flex-direction: column;
+    align-content: center;
+    margin-top: 150px;
+    z-index: 2;
+    position: absolute;
+}
+
+.submit-button {
+    font-family: 'Source Code Pro', monospace;
+    background: var(--minor-text);
+}
+
+/* this class is used on all elements that need to be hidden and unhidden depending on where the user is within the quiz */
 .hide {
     display: none;
 }
