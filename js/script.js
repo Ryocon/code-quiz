@@ -1,12 +1,13 @@
 var startButton = document.getElementById('start-button')
 var quizContainer = document.getElementById('quiz')
 var questionEl = document.getElementById('question')
-var AnswerEl = document.getElementsByClassName('answers')
+var answerEl = document.getElementsByClassName('answers')
 var mainSplash = document.getElementById('splash')
 var container = document.getElementsByClassName('container')
 var timerEl = document.getElementById('timer')
 var endPage = document.getElementById('end-page')
 
+// undefined arrays to allow questions
 var questionRandom, questionIndex
 
 startButton.addEventListener('click', startQuiz)
@@ -17,16 +18,16 @@ function startQuiz() {
  questionRandom = questions.sort(() => Math.random() - .5)
  questionIndex = 0
  quizContainer.classList.remove('hide')
- countdown()
+ countDown()
 
 }
 
-function countdown() {
+function countDown() {
     var timeLeft = 11
     quizTimer = setInterval(function(){
         timeLeft--
         timerEl.innerText = timeLeft
-if(timeLeft <= 0) {
+if (timeLeft <= 0) {
     clearInterval(timerEl)
     quizContainer.classList.add('hide')
     endPage.classList.remove('hide')
@@ -38,18 +39,29 @@ function setQuestion() {
     showQuestion(questionRandom[questionIndex])
 }
 
+// foreach executes a provided function once for each array element
 function showQuestion(question) {
-    questionEl.innerHTML = question.question
+    questionEl.innerText = question.question
+    question.answers.array.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('button')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerEl.appendChild(button)
+    });
 }
 
-function selectAsnswer() {}
+function selectAnswer(e) {}
 
 // WOKRING ON QUESTIONS APPEARING
 
 
 
 
-var questions = [
+const questions = [
     {
         question: 'What is an Egg?',
         answers: [
