@@ -43,8 +43,12 @@ var timeLeft = 10
 var wrongAnswer = 3
 
 // user starting score
-var userScore = document.getElementById('score')
+var score = document.getElementById('score')
 var userScore = 0
+
+// user intials input
+var userInitials = document.getElementById('user-initials')
+var submitInitialsButton = document.getElementById('submit-initials')
 
 // event listener that calls the start startQuiz function
 startButton.addEventListener('click', startQuiz)
@@ -67,10 +71,7 @@ function stopQuiz() {
 }
 
 function displayScore() {
-    debugger
-    userScore.textContent = userScore
-    console.log('Your final score is ' + userScore)
-    
+    score.textContent = userScore 
 }
 
 function countDown() {
@@ -135,16 +136,47 @@ function answerChoice() {
 
 
 // local storage HELL
+// function storeHighscore() {
+//     localStorage.setItem('highscore', userScore)
+// }
+
+// function storeInitials() {
+//   localStorage.setItem('initials', userInitials)
+// }
 
 
-function storeHighscore() {
-    
+
+// console.log(localStorage.getItem('initials'))
+
+var finalScore = {
+  initials: userInitials.value,
+  score: JSON.parse(userScore)
 }
 
-var highScores = JSON.parse(localStorage.getItem('highScores'))
+// event listener for submitting initials
+submitInitialsButton.addEventListener('click', function(event) {
+event.preventDefault()
 
 
+localStorage.setItem('intials', JSON.stringify(userScore))
+renderHighscore()
 
+}
+)
+
+function renderHighscore() {
+  var highScores = JSON.parse(localStorage.getItem('finalScore'))
+  if (!highScores) {
+    highScores = [];
+  }
+
+  console.log(finalScore.initials + finalScore.score)
+  document.appendChild.textContent = finalScore.initials + finalScore.score
+
+}
+
+
+// refresher
 backButton.addEventListener('click', goBack)
 
 function goBack () {
