@@ -12,6 +12,8 @@ var questionRandom, questionIndex
 
 startButton.addEventListener('click', startQuiz)
 
+debugger
+
 function startQuiz() {
  console.log('Started')
  mainSplash.classList.add('hide')
@@ -19,7 +21,7 @@ function startQuiz() {
  questionIndex = 0
  quizContainer.classList.remove('hide')
  countDown()
-
+setQuestion()
 }
 
 function countDown() {
@@ -42,16 +44,17 @@ function setQuestion() {
 // foreach executes a provided function once for each array element
 function showQuestion(question) {
     questionEl.innerText = question.question
-    question.answers.array.forEach(answer => {
+    question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
-        button.classList.add('button')
+        button.classList.add('button-style')
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
         button.addEventListener('click', selectAnswer)
+        // Uncaught TypeError: answerEl.appendChild is not a function
         answerEl.appendChild(button)
-    });
+    })
 }
 
 function selectAnswer(e) {}
